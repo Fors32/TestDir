@@ -1,0 +1,52 @@
+2015/03/30 14:06:30 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "my/one".' in C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php:286
+Stack trace:
+#0 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php(141): CWebApplication->runController('my/one')
+#1 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\opnS\OpenServer\domains\localhost\test\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test/index.php/my/one
+---
+2015/03/30 14:09:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "my/one".' in C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php:286
+Stack trace:
+#0 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php(141): CWebApplication->runController('my/one')
+#1 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\opnS\OpenServer\domains\localhost\test\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test/index.php/my/one
+---
+2015/03/30 14:13:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "my".' in C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php:286
+Stack trace:
+#0 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php(141): CWebApplication->runController('my')
+#1 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\opnS\OpenServer\domains\localhost\test\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test/index.php/my
+---
+2015/03/30 14:14:05 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Unable to resolve the request "my".' in C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php:286
+Stack trace:
+#0 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php(141): CWebApplication->runController('my')
+#1 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\base\CApplication.php(184): CWebApplication->processRequest()
+#2 C:\opnS\OpenServer\domains\localhost\test\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/test/index.php/my
+---
+2015/03/30 15:02:25 [error] [php] include(Chtml.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (C:\opnS\OpenServer\domains\localhost\yii-1.1.16\YiiBase.php:432)
+Stack trace:
+#0 C:\opnS\OpenServer\domains\localhost\test\protected\views\my\one.php(3): spl_autoload_call()
+#1 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CBaseController.php(126): require()
+#2 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CBaseController.php(95): MyController->renderInternal()
+#3 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CController.php(869): MyController->renderFile()
+#4 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CController.php(782): MyController->renderPartial()
+#5 C:\opnS\OpenServer\domains\localhost\test\protected\controllers\MyController.php(10): MyController->render()
+#6 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\actions\CInlineAction.php(49): MyController->actionOne()
+#7 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CController.php(308): CInlineAction->runWithParams()
+#8 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CController.php(286): MyController->runAction()
+#9 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CController.php(265): MyController->runActionWithFilters()
+#10 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php(282): MyController->run()
+#11 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\web\CWebApplication.php(141): CWebApplication->runController()
+#12 C:\opnS\OpenServer\domains\localhost\yii-1.1.16\base\CApplication.php(184): CWebApplication->processRequest()
+#13 C:\opnS\OpenServer\domains\localhost\test\index.php(13): CWebApplication->run()
+REQUEST_URI=/test/index.php/my
+in C:\opnS\OpenServer\domains\localhost\test\protected\views\my\one.php (3)
+in C:\opnS\OpenServer\domains\localhost\test\protected\controllers\MyController.php (10)
+in C:\opnS\OpenServer\domains\localhost\test\index.php (13)
