@@ -57,12 +57,27 @@ class PageController extends Controller
 	}
 
 	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
+     * Returns the data model based on the primary key given in the GET variable.
+     * If the data model is not found, an HTTP exception will be raised.
+     * @param integer $id the ID of the model to be loaded
+     * @return Page the loaded model
+     * @throws CHttpException
 	 */
-	public function actionCreate()
+    public function loadModel($id)
 	{
-		$model=new Page;
+        $model = Page::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        return $model;
+    }
+
+    /**
+     * Creates a new model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     */
+    public function actionCreate()
+    {
+        $model = new Page;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -74,99 +89,82 @@ class PageController extends Controller
 				$this->redirect(array('view','id'=>$model->id));
 		}
 
-		$this->render('create',array(
+        $this->render('create', array(
 			'model'=>$model,
 		));
 	}
 
 	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
+     * Updates a particular model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
+    public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+        $model = $this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-		if(isset($_POST['Page']))
-		{
-			$model->attributes=$_POST['Page'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
-		}
+        if (isset($_POST['Page'])) {
+            $model->attributes = $_POST['Page'];
+            if ($model->save())
+                $this->redirect(array('view', 'id' => $model->id));
+        }
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
+        $this->render('update', array(
+            'model' => $model,
+        ));
 	}
 
 	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
+     * Deletes a particular model.
+     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * @param integer $id the ID of the model to be deleted
 	 */
-	public function actionDelete($id)
+    public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+        $this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        if (!isset($_GET['ajax']))
+            $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
 	}
 
 	/**
-	 * Lists all models.
+     * Lists all models.
 	 */
-	public function actionIndex()
+    public function actionIndex()
 	{
         $criteria = new CDbCriteria;
 
-        $criteria->condition = 'id <= 3';
 
-        $dataProvider=new CActiveDataProvider('Page', array(
+        $dataProvider = new CActiveDataProvider('Page', array(
             'criteria' => $criteria,
             'pagination' => array(
-                'pageSize' => 1,
+                'pageSize' => 2,
             )
         ));
 
 
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
+        $this->render('index', array(
+            'dataProvider' => $dataProvider,
 		));
 	}
 
 	/**
-	 * Manages all models.
+     * Manages all models.
 	 */
-	public function actionAdmin()
+    public function actionAdmin()
 	{
-		$model=new Page('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Page']))
-			$model->attributes=$_GET['Page'];
+        $model = new Page('search');
+        $model->unsetAttributes();  // clear any default values
+        if (isset($_GET['Page']))
+            $model->attributes = $_GET['Page'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
-
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer $id the ID of the model to be loaded
-	 * @return Page the loaded model
-	 * @throws CHttpException
-	 */
-	public function loadModel($id)
-	{
-		$model=Page::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
+        $this->render('admin', array(
+            'model' => $model,
+        ));
 	}
 
 	/**

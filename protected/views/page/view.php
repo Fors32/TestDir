@@ -26,7 +26,8 @@ $this->menu=array(
 		'text' => array(
             'label' => 'Text',
             'type' => 'raw',
-            'value' => $model->text
+            'value' => $model->text,
         ),
+        'category' => 'category_id',
     ),
 )); ?>

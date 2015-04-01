@@ -10,6 +10,11 @@
  */
 class Page extends CActiveRecord
 {
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
+    }
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -26,9 +31,12 @@ class Page extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, text', 'required'),
+            array('title, category_id, text', 'required'),
 			array('title', 'length', 'max'=>255),
-			// The following rule is used by search().
+            array('category_id', 'numerical'),
+            array('text', 'safe'),
+
+            // The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, title, text', 'safe', 'on'=>'search'),
 		);
@@ -42,6 +50,7 @@ class Page extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 		);
 	}
 
@@ -54,6 +63,8 @@ class Page extends CActiveRecord
 			'id' => 'ID',
 			'title' => 'Title',
 			'text' => 'Text',
+            'category' => 'Категории',
+            'category_id' => 'Категории',
 		);
 	}
 
@@ -81,6 +92,9 @@ class Page extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'pagination' => array(
+                'pageSize' => 2,
+            ),
 		));
 	}
 
@@ -90,8 +104,11 @@ class Page extends CActiveRecord
 	 * @param string $className active record class name.
 	 * @return Page the static model class
 	 */
-	public static function model($className=__CLASS__)
-	{
-		return parent::model($className);
-	}
+
+    public function beforeSave()
+    {
+
+        $this->title = $this->title . '(Devide)';
+        return parent::beforeSave();
+    }
 }
