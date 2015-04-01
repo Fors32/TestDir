@@ -142,7 +142,7 @@ class PageController extends Controller
         $dataProvider = new CActiveDataProvider('Page', array(
             'criteria' => $criteria,
             'pagination' => array(
-                'pageSize' => 2,
+                'pageSize' => 3,
             )
         ));
 

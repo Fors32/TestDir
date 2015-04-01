@@ -64,7 +64,7 @@ class Page extends CActiveRecord
 			'title' => 'Title',
 			'text' => 'Text',
             'category' => 'Категории',
-            'category_id' => 'Категории',
+            'category_id' => 'Категории ID',
 		);
 	}
 
@@ -108,7 +108,7 @@ class Page extends CActiveRecord
     public function beforeSave()
     {
 
-        $this->title = $this->title . '(Devide)';
-        return parent::beforeSave();
+        //$this->title = $this->title . '(Devide)';
+        // return parent::beforeSave();
     }
 }

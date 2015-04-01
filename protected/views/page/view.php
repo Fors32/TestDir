@@ -28,6 +28,6 @@ $this->menu=array(
             'type' => 'raw',
             'value' => $model->text,
         ),
-        'category' => 'category_id',
+        'category_id' => 'category_id',
     ),
 )); ?>
