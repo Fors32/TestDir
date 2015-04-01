@@ -23,6 +23,10 @@ $this->menu=array(
 	'attributes'=>array(
 		'id',
 		'title',
-		'text',
-	),
+		'text' => array(
+            'label' => 'Text',
+            'type' => 'raw',
+            'value' => $model->text
+        ),
+    ),
 )); ?>
